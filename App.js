@@ -5,9 +5,7 @@ import {
   View,
   StyleSheet,
   Button,
-  SafeAreaView,
   StatusBar,
-  PanResponder,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -15,11 +13,26 @@ const App = () => {
   const move = useRef(new Animated.Value(0)).current;
   const start = () => {
     Animated.timing(move, {
-      toValue: 350,
+      toValue: 370,
+      duration: 4000,
+      useNativeDriver: true,
+    }).start();
+  };
+  const stop = () => {
+    Animated.timing(move, {
+      toValue: 0,
       duration: 3000,
       useNativeDriver: true,
     }).start();
   };
+  const restart = () => {
+    Animated.timing(move, {
+      toValue: 0,
+      duration: 3000,
+      useNativeDriver: true,
+    }).start();
+  };
+
  
   const fadeAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -59,6 +72,8 @@ const App = () => {
 
         <View>
           <Button title="Start" onPress={start} />
+          <Button title="Stop" onPress={stop}/>
+          <Button title="Resest" onPress={restart} />
         </View>
 
       </View>
